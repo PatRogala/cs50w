@@ -1,9 +1,14 @@
+* {
+  box-sizing: border-box;
+}
 body {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: sans-serif;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 header {
@@ -15,7 +20,6 @@ header {
 ul, li {
   display: inline;
 }
-
 li {
   padding: 10px 10px;
   font-size: 0.9em;
@@ -28,4 +32,46 @@ li a {
 
 li a:hover {
   text-decoration: underline;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: rgba(0,0,0,.54);
+  border-top: 1px solid rgba(0,0,0,.14);
+  background: #f2f2f2;
+}
+
+footer ul {
+  margin-right: 40px;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin-bottom: 210px;
+}
+
+.google-logo {
+  font-size: 5em;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.g-blue {
+  color: rgb(66, 133, 244);
+}
+.g-red {
+  color: rgb(219, 68, 55);
+}
+.g-yellow {
+  color: rgb(244,180, 0);
+}
+.g-green {
+  color: rgb(15, 157, 88);
 }
