@@ -1,0 +1,31 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+header {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+ul, li {
+  display: inline;
+}
+
+li {
+  padding: 10px 10px;
+  font-size: 0.9em;
+}
+
+li a {
+  color: black;
+  text-decoration: none;
+}
+
+li a:hover {
+  text-decoration: underline;
+}
