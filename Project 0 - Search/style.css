@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: sans-serif;
   box-sizing: border-box;
   margin: 0;
@@ -55,7 +51,8 @@ footer ul {
   flex-direction: column;
   box-sizing: border-box;
   justify-content: center;
-  margin-bottom: 210px;
+  align-items: center;
+  height: 100vh;
 }
 
 .google-logo {
@@ -83,7 +80,7 @@ form {
   flex-direction: column;
   align-items: center;
 }
-input[type=text] {
+.main input[type=text] {
   width: 80vw;
   max-width: 650px;
   height: 40px;
@@ -91,11 +88,11 @@ input[type=text] {
   border-radius: 20px;
   border: 2px solid #f2f2f2;
 }
-input[type=text]:focus {
+.main input[type=text]:focus {
   outline: none;
 }
 
-input[type=text]:focus {
+.main input[type=text]:focus {
   box-shadow: 0px 6px 10px 8px #F2F2F2;
 }
 
@@ -108,4 +105,59 @@ input[type=text]:focus {
 
 .button:hover {
   border: 1px solid #acacac;
+}
+
+.advance-search {
+  padding: 100px 50px;
+  display: grid;
+  width: 100vw;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+.advance-search form {
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+  gap: 20px;
+}
+
+hr {
+  height: 1px;
+  background-color: #bbbbbb;
+  border: none;
+  width: 100%;
+}
+
+.advance-search h1 {
+  color: rgb(219, 68, 55);
+  font-size: 1.5em;
+}
+
+.advance-search h2 {
+  font-size: 1.1em;
+  color: #949494;
+}
+
+form label {
+  font-size: 0.9em;
+  color: #6b6b6b;
+}
+.adv-b {
+  border: none;
+  background-color: rgb(66, 133, 244);
+  color: white;
+  height: 30px;
+  width: 130px;
+  font-weight: 800;
+  justify-self: flex-end;
+}
+
+@media (max-width: 700px) {
+  .advance-search form {
+    display: grid;
+    grid-template-columns: 40% 50%;
+    gap: 20px;
+  }
+  .extra-info {
+    display: none;
+  }
 }
