@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from . import util
 from django import forms
+from random import sample
 
 
 def index(request):
@@ -58,3 +59,8 @@ def edit(request, title):
   elif request.method == "POST":
     entry = util.save_entry(title, request.POST['entry_body'])
     return redirect("entry", title=title)
+
+def random(request):
+  entry = sample(util.list_entries(), 1)[0]
+  print(entry)
+  return redirect("entry", title=entry)
