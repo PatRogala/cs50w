@@ -12,7 +12,8 @@ def entry(request, title):
   entry = util.get_entry(title)
   if entry:
     return render(request, "encyclopedia/entry.html", {
-      "entry": entry
+      "entry": entry,
+      "title": title
     })
   else:
     return render(request, "encyclopedia/error.html", {
@@ -47,3 +48,13 @@ def new(request):
     else:
       util.save_entry(title, body)
       return redirect("entry", title=title)
+
+def edit(request, title):
+  if request.method == "GET":
+    return render(request, "encyclopedia/edit.html", {
+      "body": request.GET['entry_body'],
+      "title": title
+    })
+  elif request.method == "POST":
+    entry = util.save_entry(title, request.POST['entry_body'])
+    return redirect("entry", title=title)

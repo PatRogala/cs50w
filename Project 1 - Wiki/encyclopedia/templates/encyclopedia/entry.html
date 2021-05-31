@@ -1,4 +1,10 @@
 {% extends "encyclopedia/layout.html" %}
 {% block body %}
   {{ entry }}
+  <form action="{% url 'edit' title=title %}" method="get">
+    <textarea hidden name="entry_body">
+      {{ entry }}
+    </textarea>
+    <input type="submit" value="Edit">
+  </form>
 {% endblock %}
