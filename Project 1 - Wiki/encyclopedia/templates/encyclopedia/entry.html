@@ -1,6 +1,6 @@
 {% extends "encyclopedia/layout.html" %}
 {% block body %}
-  {{ entry }}
+  {{ entry|safe }}
   <form action="{% url 'edit' title=title %}" method="get">
     <textarea hidden name="entry_body">
       {{ entry }}

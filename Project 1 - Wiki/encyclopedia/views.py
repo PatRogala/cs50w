@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from . import util
 from django import forms
 from random import sample
+import markdown2
 
 
 def index(request):
@@ -13,7 +14,7 @@ def entry(request, title):
   entry = util.get_entry(title)
   if entry:
     return render(request, "encyclopedia/entry.html", {
-      "entry": entry,
+      "entry": markdown2.markdown(entry),
       "title": title
     })
   else:
@@ -53,7 +54,7 @@ def new(request):
 def edit(request, title):
   if request.method == "GET":
     return render(request, "encyclopedia/edit.html", {
-      "body": request.GET['entry_body'],
+      "body": util.get_entry(title),
       "title": title
     })
   elif request.method == "POST":
