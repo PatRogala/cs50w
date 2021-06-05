@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 
 class User(AbstractUser):
@@ -22,9 +23,14 @@ class AuctionListing(models.Model):
     choices=CATEGORIES,
     default="home"
   )
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
 
 class Bid(models.Model):
   pass
 
 class Comment(models.Model):
   pass
+
+class Watchlist(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="watchlist")
+  item = models.ForeignKey(AuctionListing, on_delete=models.CASCADE)

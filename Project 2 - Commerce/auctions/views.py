@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import AuctionListing, User
+from .models import AuctionListing, User, Watchlist
 
 
 def index(request):
@@ -69,14 +69,39 @@ def register(request):
 def create_listing(request):
   if request.method == "POST":
     form = request.POST
+    user = User.objects.get(username=request.user)
     listing = AuctionListing(
       title=form['title'],
       description=form['description'],
       bid=form['starting_bid'],
       image_url=form['image'],
-      category=form['category']
+      category=form['category'],
+      user=user
     )
-    listing.save()
+    if not listing.save():
+      return HttpResponseRedirect(reverse("create_listing"))
     return HttpResponseRedirect(reverse("index"))
   else:
     return render(request, "auctions/createlisting.html")
+
+def listing(request, id):
+  listing = AuctionListing.objects.get(id=id)
+  return render(request, "auctions/listing.html", {
+    "listing": listing,
+    'user': request.user,
+    "status": listing.id in request.user.watchlist.all().values_list('item_id', flat=True),
+  })
+
+def watchlist_add(request):
+  item = AuctionListing.objects.get(id=request.GET['watchlist_item'])
+  user = User.objects.get(username=request.GET['user'])
+  if not Watchlist.objects.filter(user=user, item=item):
+    i = Watchlist(user=user, item=item)
+    i.save()
+  else:
+    Watchlist.objects.filter(user=user, item=item).all().delete()
+  print(Watchlist.objects.all())
+  return HttpResponseRedirect(reverse('listing', kwargs={'id': item.id}))
+
+def bid(request, item):
+  pass

@@ -4,7 +4,7 @@
     <h2>Active Listings</h2>
     <ul>
     {% for listing in listings %}
-      <li>{{ listing.title }} - {{ listing.description }} <b>${{ listing.bid }}</b>
+      <li><a href="{% url 'listing' id=listing.id %}">{{ listing.title }}</a> - {{ listing.description }} <b>${{ listing.bid }}</b>
       {% if listing.image_url %}
         <br><img src="{{ listing.image_url }}" heigth="200">
       {% endif %}
