@@ -9,7 +9,9 @@ from .models import AuctionListing, User
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    listings = AuctionListing.objects.all()
+    return render(request, "auctions/index.html", {
+    "listings": listings })
 
 
 def login_view(request):
@@ -70,7 +72,7 @@ def create_listing(request):
     listing = AuctionListing(
       title=form['title'],
       description=form['description'],
-      starting_bid=form['starting_bid'],
+      bid=form['starting_bid'],
       image_url=form['image'],
       category=form['category']
     )

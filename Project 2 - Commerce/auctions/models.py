@@ -15,7 +15,7 @@ class AuctionListing(models.Model):
 
   title = models.CharField(max_length=64)
   description = models.CharField(max_length=256)
-  starting_bid = models.IntegerField()
+  bid = models.IntegerField()
   image_url = models.CharField(max_length=128, blank=True)
   category = models.CharField(
     max_length=15,
